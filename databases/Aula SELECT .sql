@@ -119,7 +119,7 @@ Extende o LIKE, adicionando mais opções:
 */
 SELECT * FROM cliente WHERE nome SIMILAR TO '[AB]&';
 
-SELECT * FROM cliente WHERE nome SIMILsAR TO '[A-J]&';
+SELECT * FROM cliente WHERE nome SIMILAR TO '[A-J]&';
 
 /*
 CLÁUSULA ORDER BY
