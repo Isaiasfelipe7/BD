@@ -1,0 +1,210 @@
+						RESPOSTAS - PROVINHA BANCO DE DADOS 
+
+CREATE TABLE "livro" (
+  "id" int,
+  "titulo" varchar(50),
+  "idioma" varchar(20),
+  PRIMARY KEY ("id")
+);
+
+CREATE TABLE "autor" (
+  "id" int,
+  "nome" varchar(40),
+  "pais" varchar(30),
+  PRIMARY KEY ("id")
+);
+
+CREATE TABLE "autoria" (
+  "id_livro" int,
+  "id_autor" int,
+  PRIMARY KEY ("id_livro", "id_autor"),
+  CONSTRAINT "FK_autoria.id_autor"
+    FOREIGN KEY ("id_autor")
+      REFERENCES "autor"("id"),
+  CONSTRAINT "FK_autoria.id_livro"
+    FOREIGN KEY ("id_livro")
+      REFERENCES "livro"("id")
+);
+
+ CREATE TABLE "usuario" (
+  "id" int,
+  "nome" varchar(40),
+  "endereco" varchar(50),
+  "telefone" varchar(20),
+  "email" varchar(50),
+  PRIMARY KEY ("id")
+);
+
+CREATE TABLE "emprestimo" (
+  "id" int,
+  "data" date,
+  "id_usuario" int,
+  "id_livro" int,
+  PRIMARY KEY ("id"),
+  CONSTRAINT "FK_emprestimo.id_usuario"
+    FOREIGN KEY ("id_usuario")
+      REFERENCES "usuario"("id"),
+  CONSTRAINT "FK_emprestimo.id_livro"
+    FOREIGN KEY ("id_livro")
+      REFERENCES "livro"("id")
+);
+
+
+INSERT INTO "livro" ("id", "titulo", "idioma") VALUES
+  (1, 'O Mistério do Enigma Perdido', 'Português'),
+  (2, 'Aventuras no Mundo Submarino', 'Inglês'),
+  (3, 'O Segredo das Montanhas Proibidas', 'Espanhol'),
+  (4, 'O Tesouro dos Sete Mares', 'Francês'),
+  (5, 'A Profecia do Dragão', 'Alemão'),
+  (6, 'A Herança do Mistério', 'Italiano'),
+  (7, 'A Cidade dos Sonhos', 'Português'),
+  (8, 'The Lost Kingdom', 'Inglês'),
+  (9, 'La Leyenda del Fuego Sagrado', 'Espanhol'),
+  (10, 'Le Trésor Caché', 'Francês'),
+  (11, 'Das Geheimnis des Zauberwaldes', 'Alemão'),
+  (12, 'Il Segreto dellvIsola Perduta', 'Italiano'),
+  (13, 'Aventuras nas Terras Encantadas', 'Português'),
+  (14, 'The Forgotten Chronicles', 'Inglês'),
+  (15, 'La Aventura Prohibida', 'Espanhol'),
+  (16, 'Les Secrets du Château Mystérieux', 'Francês'),
+  (17, 'Die Legende des Drachen', 'Alemão'),
+  (18, 'LEredità del Passato', 'Italiano'),
+  (19, 'A Busca pelo Tesouro Escondido', 'Português'),
+  (20, 'The Enchanted Realm', 'Inglês');
+
+
+INSERT INTO "autor" ("id", "nome", "pais") VALUES
+  (1, 'Luciano Silva', 'Brasil'),
+  (2, 'Emily Johnson', 'Estados Unidos'),
+  (3, 'Carlos Hernández', 'Espanha'),
+  (4, 'Sophie Dubois', 'França'),
+  (5, 'Hans Müller', 'Alemanha'),
+  (6, 'Giuseppe Rossi', 'Itália'),
+  (7, 'Pedro Lopes', 'Portugal'),
+  (8, 'William Thompson', 'Inglaterra'),
+  (9, 'Sofia Ramirez', 'Argentina'),
+  (10, 'Liam Wilson', 'Canadá');
+
+
+INSERT INTO "autoria" ("id_livro", "id_autor") VALUES
+  (1, 1),
+  (2, 2),
+  (3, 3),
+  (4, 4),
+  (5, 5),
+  (6, 6),
+  (7, 7),
+  (8, 8),
+  (9, 9),
+  (10, 10),
+  (11, 1),
+  (11, 2),
+  (12, 3),
+  (12, 4),
+  (13, 5),
+  (13, 6),
+  (14, 7),
+  (14, 8),
+  (15, 9),
+  (15, 10),
+  (16, 1),
+  (16, 2),
+  (17, 3),
+  (17, 4),
+  (18, 5),
+  (18, 6),
+  (19, 7),
+  (19, 8),
+  (20, 9),
+  (20, 10);
+
+
+INSERT INTO "usuario" ("id", "nome", "endereco", "telefone", "email") VALUES
+  (1, 'Fernanda Silva', 'Rua das Flores, 123', '(11) 9876-5432', 'fernanda.silva@example.com'),
+  (2, 'Gustavo Santos', 'Avenida dos Sonhos, 456', '(21) 9876-5432', 'gustavo.santos@example.com'),
+  (3, 'Carolina Oliveira', 'Rua Principal, 789', '(31) 9876-5432', 'carolina.oliveira@example.com'),
+  (4, 'Rafaela Pereira', 'Rua das Palmeiras, 321', '(51) 9876-5432', 'rafaela.pereira@example.com'),
+  (5, 'Lucas Gomes', 'Avenida da Praia, 654', '(81) 9876-5432', 'lucas.gomes@example.com'),
+  (6, 'Mariana Costa', 'Quadra dos Sonhos, 987', '(61) 9876-5432', 'mariana.costa@example.com'),
+  (7, 'Pedro Souza', 'Rua das Fontes, 111', '(71) 9876-5432', 'pedro.souza@example.com'),
+  (8, 'Juliana Almeida', 'Avenida das Palmeiras, 222', '(85) 9876-5432', 'juliana.almeida@example.com'),
+  (9, 'Ricardo Santos', 'Rua das Pedras, 333', '(41) 9876-5432', 'ricardo.santos@example.com'),
+  (10, 'Camila Lima', 'Avenida das Flores, 444', '(92) 9876-5432', 'camila.lima@example.com');
+
+
+INSERT INTO "emprestimo" ("id", "data", "id_usuario", "id_livro") VALUES
+  (1, '2023-01-01', 1, 1),
+  (2, '2023-01-02', 2, 2),
+  (3, '2023-01-03', 3, 3),
+  (4, '2023-01-04', 4, 4),
+  (5, '2023-01-05', 5, 5),
+  (6, '2023-01-06', 6, 6),
+  (7, '2023-01-07', 7, 7),
+  (8, '2023-01-08', 1, 8),
+  (9, '2023-01-09', 2, 9),
+  (10, '2023-01-10', 3, 10),
+  (11, '2023-01-11', 4, 1),
+  (12, '2023-01-12', 5, 2),
+  (13, '2023-01-13', 6, 3),
+  (14, '2023-01-14', 7, 4),
+  (15, '2023-01-15', 1, 5),
+  (16, '2023-01-16', 2, 6),
+  (17, '2023-01-17', 3, 7),
+  (18, '2023-01-18', 4, 8),
+  (19, '2023-01-19', 5, 9),
+  (20, '2023-01-20', 6, 10),
+  (21, '2023-01-21', 1, 1),
+  (22, '2023-01-22', 2, 2),
+  (23, '2023-01-23', 3, 3),
+  (24, '2023-01-24', 4, 4),
+  (25, '2023-01-25', 5, 5),
+  (26, '2023-01-26', 6, 6),
+  (27, '2023-01-27', 7, 7),
+  (28, '2023-01-28', 1, 8),
+  (29, '2023-01-29', 2, 9),
+  (30, '2023-01-30', 3, 10);
+
+
+
+1 - Retorne o nome e o país dos autores em ordem alfabética por nome.
+
+   r1 - SELECT nome, pais FROM autor ORDER BY nome ASC;
+		
+		
+2 - Retorne a contagem total de registros na tabela "usuario".
+
+   r2 - SELECT COUNT(*) AS total_registros FROM usuario;
+   
+
+3 - Retorne o título e o nome do autor cujo título tenha mais de 10 caracteres.
+
+   r3 - SELECT livro.titulo, autor.nome FROM livro
+		JOIN autoria ON livro.id = autoria.id_livro
+		JOIN autor ON autoria.id_autor = autor.id
+	WHERE LENGTH(livro.titulo) > 10;
+		
+
+4 - Retorne o nome dos autores que publicaram livros em inglês, por ordem alfabética do nome do autor.
+
+   r4 - SELECT autor.nome FROM autor
+		JOIN autoria ON autor.id = autoria.id_autor
+		JOIN livro ON autoria.id_livro = livro.id
+		WHERE livro.idioma = 'Inglês'
+	ORDER BY autor.nome ASC;
+	
+	
+5 - Retorne o título e o idioma dos livros que foram emprestados para Mariana Costa.
+
+   r5 - SELECT livro.titulo, livro.idioma FROM livro
+		JOIN emprestimo ON livro.id = emprestimo.id_livro
+		JOIN usuario ON emprestimo.id_usuario = usuario.id
+	WHERE usuario.nome = 'Mariana Costa';
+	
+
+6 - Retorne a relação de livros que nunca foram emprestados.
+
+   r6 - SELECT livro.titulo FROM livro
+		LEFT JOIN emprestimo ON livro.id = emprestimo.id_livro
+	WHERE emprestimo.id IS NULL;
+
+
